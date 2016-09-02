@@ -1,6 +1,8 @@
 # django-language-migrator
 Check every .py and .html files in every directory of your django project and convert strings inside `{% trans "..." %}` tags or `gettext("...")` functions (and its derivated) to a selected language from a .po file.
 
+Not compatible with **Python 3**
+
 Add `django-language-migrator` to the installed apps
 ```
 INSTALLED_APPS = [
