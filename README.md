@@ -8,6 +8,12 @@ Clone the repository or download the folder and run
 ```
 python setup.py install
 ```
+Or copy `management/commands/language_migrator.py` in your `./management/commands/` folder inside the root app and add it to the init file
+```
+...
+import language_migrator
+...
+```
 
 Add `django-language-migrator` to the installed apps
 ```
