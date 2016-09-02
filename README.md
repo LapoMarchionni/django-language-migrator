@@ -3,6 +3,12 @@ Check every .py and .html files in every directory of your django project and co
 
 Not compatible with **Python 3**
 
+## Installation
+Clone the repository or download the folder and run
+```
+python setup.py install
+```
+
 Add `django-language-migrator` to the installed apps
 ```
 INSTALLED_APPS = [
@@ -17,6 +23,7 @@ INSTALLED_APPS = [
     'django-language-migrator'
 ]
 ```
+## Translate
 Start from your app directory as a Django command:
 ```
 python manage.py language_migrator [language]
