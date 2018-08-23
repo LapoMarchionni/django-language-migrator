@@ -33,7 +33,8 @@ class Command(BaseCommand):
             directories = {}
             for root, dirs, files in os.walk('.'):
                 accepted_files = []
-                if 'migrations' not in root and 'django_language_migrator' not in root:
+                if ('migrations' not in root and
+                        'django_language_migrator' not in root):
                     for file in files:
                         if file.endswith('.html'):
                             accepted_files.append(file)
@@ -61,7 +62,8 @@ class Command(BaseCommand):
                             finder = r'["|\']' + re.escape(string) + r'["|\']'
                             apex_string = re.search(finder, text).group()
                             text = re.sub(re.escape(apex_string),
-                                          '"' + ugettext(string) + '"', text)
+                                          '"' + ugettext(string) + '"',
+                                          text)
                         except:
                             pass
                     f.seek(0)
@@ -74,15 +76,16 @@ class Command(BaseCommand):
             lang = args[0]
             translation.activate(lang)
         except:
-            print 'Insert a valid language from your local directories or type help'
+            print('Insert a valid language from your local directories or type help')
             return
 
         counter_html, counter_py, directories = get_files()
-        print 'Found %s files across %s directories [%s .html and %s .py]\n' % (counter_html + counter_py, len(directories), counter_html, counter_py)
-        if query_yes_no('These files will be modified, are you sure? ') == False:
+        print('Found %s files across %s directories [%s .html and %s .py]\n' %
+              (counter_html + counter_py, len(directories), counter_html, counter_py))
+        if query_yes_no('These files will be modified, are you sure? ') is False:
             return
 
-        print 'Backupping project folder...'
+        print('Backupping project folder...')
         dir_util.copy_tree('.', './mig_bkup_dta')
 
         error_files = []
@@ -103,8 +106,9 @@ class Command(BaseCommand):
             stdout.write('\n')
 
         if len(error_files) != 0:
-            print 'There were %s errors with these files: \n%s' % (len(error_files), '\n'.join(error_files))
-            print 'Reverting this files from backup...'
+            print('There were %s errors with these files: \n%s' %
+                  (len(error_files), '\n'.join(error_files)))
+            print('Reverting this files from backup...')
             for file_path in error_files:
                 print file_path
 
@@ -114,5 +118,5 @@ class Command(BaseCommand):
         if query_yes_no('Do you want to keep the backup? '):
             dir_util.remove_tree('./mig_bkup_dta')
         else:
-            print 'Backup saved in folder /mig_bkup_dta in your project folder'
-        print 'Done'
+            print('Backup saved in folder /mig_bkup_dta in your project folder')
+        print('Done')
