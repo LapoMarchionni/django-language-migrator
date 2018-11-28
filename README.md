@@ -3,18 +3,16 @@ Check every .py and .html files in every directory of your django project and co
 
 ## Installation
 Clone the repository or download the folder and run
-```
+```shell
 python setup.py install
 ```
 Or copy `management/commands/language_migrator.py` in your `./management/commands/` folder inside the root app and add it to the init file
-```
-...
+```python
 import language_migrator
-...
 ```
 
 Add `django-language-migrator` to the installed apps
-```
+```python
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -29,11 +27,11 @@ INSTALLED_APPS = [
 ```
 ## Translate
 Start from your app directory as a Django command:
-```
+```shell
 python manage.py language_migrator [language]
 ```
 Where `[language]` is a valide language code for which you own the relative .po file. Example:
-```
+```shell
 python manage.py lanugage_migrator en-US
 ```
 A project backup will be created inside `./mig_bkup_data` inside your project root folder
